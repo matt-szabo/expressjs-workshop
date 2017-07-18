@@ -1,0 +1,16 @@
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
+
+
+app.post('/createPost', urlencodedParser, function(req, res) {
+    
+if (!req.body) return res.sendStatus(400)
+
+myReddit.createPost({
+            title: req.body.title,
+            url: req.body.url,
+            userId: 1,
+            subredditId: 14
+        });
+
+res.redirect('http://redditnodejs-mattszabo.c9users.io/posts');
+})
