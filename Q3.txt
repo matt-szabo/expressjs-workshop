@@ -1,0 +1,52 @@
+app.get('/calculator/:operation',function(req,res){
+  
+     if (req.query.num1 == null){
+           var a = 0;
+         }
+         else{
+           var a = parseInt(req.query.num1);
+         }
+         
+           if (req.query.num2 == null){
+           var b = 0;
+         }
+         else{
+           var b = parseInt(req.query.num2);
+         }
+  
+  
+  if (req.params.operation == 'add'){
+        
+            var solution = {
+                    operation: "add",
+                    firstOperand: a,
+                    secondOperand: b,
+                    solution: a+b
+            }
+  }
+    
+    else if (req.params.operation == 'multiply'){
+    
+            var solution = {
+              
+                    operation: "multiply",
+                    firstOperand: a,
+                    secondOperand: b,
+                    solution: a*b
+            }
+          
+       }
+      
+      
+       else
+    
+    { 
+        res.status(400).send('Something broke!');
+    }
+    
+  res.send(JSON.stringify(solution));
+    
+
+
+ 
+})

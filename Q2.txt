@@ -1,0 +1,9 @@
+app.get('/hello', function(req, res) {
+  
+  if (req.query.name == null){
+    res.send('<h1>Hello</h1>' );
+  }
+  
+  res.send('<h1>Hello ' + req.query.name + ' ' + req.query.lastname + '</h1>' );
+});
+
