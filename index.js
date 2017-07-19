@@ -15,7 +15,7 @@ var connection = mysql.createPool({
 var RedditAPI = require('./reddit');
 var myReddit = new RedditAPI(connection);
 
-
+app.set('view engine', 'pug');
 
 // app.get('/', function (req, res) {
 //   res.send('<h1>Hello World1!</h1>');
@@ -83,11 +83,11 @@ var myReddit = new RedditAPI(connection);
 
 app.get('/new-post', function(req, res) {
 
-var formstring = "<form action=\"\/createPost\" method=\"post\"><p><input type=\"text\" name=\"url\" placeholder=\"Enter a URL to content\"\/><\/p><p><input type=\"text\" name=\"title\" placeholder=\"Enter the title of your content\"\/><\/p><button type=\"submit\">Create!<\/button><\/form>";
 
 
-res.send(formstring);
-
+//var formstring = "<form action=\"\/createPost\" method=\"post\"><p><input type=\"text\" name=\"url\" placeholder=\"Enter a URL to content\"\/><\/p><p><input type=\"text\" name=\"title\" placeholder=\"Enter the title of your content\"\/><\/p><button type=\"submit\">Create!<\/button><\/form>";
+//res.send(formstring);
+res.render('createPost');
 
 });
 
@@ -114,17 +114,21 @@ res.redirect('http://redditnodejs-mattszabo.c9users.io/posts');
 
 app.get('/posts', function(req, res) {
  
-  myReddit.getAllPosts().then(function(data){
+  myReddit.getAllPosts().then(function(posts){
       
-    var string1 = "<!DOCTYPE html> <html> <head><title>Lots of Posts are supposed to be here</title></head> <body><div id=posts> <h1>List of posts</h1> <ul class=posts-list>";
-    var string2 = "</ul></div></body></html>";
+   // var string1 = "<!DOCTYPE html> <html> <head><title>Lots of Posts are supposed to be here</title></head> <body><div id=posts> <h1>List of posts</h1> <ul class=posts-list>";
+ //   var string2 = "</ul></div></body></html>";
+   // res.json(posts);
+  res.render('post-list', {posts: posts});
         
-    data.forEach(post => {
+    // data.forEach(post => {
         
-    string1 =  string1 + "<li class=post-item> <h2 class=" + post.id +"> <a href=" + post.url + ">" + post.title + "</a> "+ " </h2> <p> Created by " + post.userId + "</p> </li>" ;
-    });
+    // string1 =  string1 + "<li class=post-item> <h2 class=" + post.id +"> <a href=" + post.url + ">" + post.title + "</a> "+ " </h2> <p> Created by " + post.userId + "</p> </li>" ;
+    // });
+    
+    
    
-  res.send(string1+string2);
+ //res.send(string1+text+string2);
       });
       
 })
