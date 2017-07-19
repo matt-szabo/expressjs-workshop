@@ -1,0 +1,24 @@
+layout.pug
+
+doctype html
+html
+  head
+    meta(charset="utf-8")
+  
+  body
+    block content
+    
+    
+    
+extends layout.pug
+
+block content
+
+    #posts
+        h1 List of posts 
+        ul.posts-list
+             li.post-item
+                h2.post-item__title
+                  each item in posts
+                      a(href = item.url) #{item.title}
+                      p Created By Username #{item.userId}

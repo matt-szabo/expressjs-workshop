@@ -1,0 +1,9 @@
+app.get('/new-post', function(req, res) {
+
+var formstring = "<form action=\"\/createPost\" method=\"post\"><p><input type=\"text\" name=\"url\" placeholder=\"Enter a URL to content\"\/><\/p><p><input type=\"text\" name=\"title\" placeholder=\"Enter the title of your content\"\/><\/p><button type=\"submit\">Create!<\/button><\/form>";
+
+
+res.send(formstring);
+
+
+});
