@@ -1,0 +1,22 @@
+app.get('/posts', function(req, res) {
+ 
+  myReddit.getAllPosts().then(function(posts){
+
+  res.render('post-list', {posts: posts});
+        
+      });
+      
+})
+// THE PUG FILE BELOW
+
+#posts
+    h1 List of posts
+     ul.posts-list
+        li.post-item
+            each item in posts
+                h2 #{item.title} 
+                li 
+                    a(href = item.url) #{item.url}
+                    p Created By Username #{item.userId}
+            
+     
